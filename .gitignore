@@ -1,0 +1,36 @@
+# 这是一份标准的 Unity .gitignore 模板
+
+# 忽略自动生成的文件夹 (最重要的部分，上万个多余文件全在这)
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+
+# 忽略 Visual Studio 和 VS Code 产生的临时配置和缓存文件
+.vs/
+.vscode/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# 忽略各种崩溃报告和编译结果
+sysinfo.txt
+*.apk
+*.aab
+*.unitypackage
+*.app
