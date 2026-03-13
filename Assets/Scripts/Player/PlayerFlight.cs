@@ -1,6 +1,23 @@
 using UnityEngine;
 
 /// <summary>
+/// 翅膀状态枚举
+/// </summary>
+public enum WingState
+{
+    None,       // 无翅膀 (0 - firstThreshold)
+    Immature,   // 未成熟翅膀 (firstThreshold - unlockThreshold)
+    Mature      // 成熟翅膀 (unlockThreshold+)
+}
+
+/// <summary>
+/// 翅膀状态变化事件委托
+/// </summary>
+/// <param name="newState">新的翅膀状态</param>
+/// <param name="progress">翅膀成长进度 (0-1)</param>
+public delegate void WingStateChangedHandler(WingState newState, float progress);
+
+/// <summary>
 /// 玩家飞行控制器
 /// 负责管理 fly 值系统和飞行能力
 /// 玩家通过跳跃积累 fly 值，达到阈值后解锁飞行能力
@@ -15,6 +32,9 @@ public class PlayerFlight : MonoBehaviour
     
     [Tooltip("解锁飞行能力所需的 fly 值阈值")]
     [SerializeField] private float unlockThreshold = 50f;
+    
+    [Tooltip("翅膀出现的第一阶段阈值")]
+    [SerializeField] private float firstThreshold = 35f;
     
     [Header("飞行参数")]
     [Tooltip("飞行时的水平移动速度")]
@@ -59,6 +79,19 @@ public class PlayerFlight : MonoBehaviour
     // PlayerAnimation 引用
     private PlayerAnimation playerAnimation;
     
+    // 上一次的翅膀状态（用于检测状态变化）
+    private WingState lastWingState = WingState.None;
+    
+    #endregion
+    
+    #region 公开事件
+    
+    /// <summary>
+    /// 翅膀状态变化事件
+    /// 当翅膀状态改变时触发
+    /// </summary>
+    public event WingStateChangedHandler OnWingStateChanged;
+    
     #endregion
     
     #region 公开属性
@@ -92,6 +125,53 @@ public class PlayerFlight : MonoBehaviour
     /// 获取解锁进度百分比（0-1）
     /// </summary>
     public float UnlockProgress => unlockThreshold > 0f ? currentFlyValue / unlockThreshold : 0f;
+    
+    /// <summary>
+    /// 获取第一阶段阈值
+    /// </summary>
+    public float FirstThreshold => firstThreshold;
+    
+    /// <summary>
+    /// 获取当前翅膀状态
+    /// </summary>
+    public WingState CurrentWingState
+    {
+        get
+        {
+            if (currentFlyValue < firstThreshold)
+                return WingState.None;
+            else if (currentFlyValue < unlockThreshold)
+                return WingState.Immature;
+            else
+                return WingState.Mature;
+        }
+    }
+    
+    /// <summary>
+    /// 获取翅膀成长进度（用于 WingsVisual 计算视觉效果）
+    /// - None 阶段：0 - firstThreshold 的进度 (0-1)
+    /// - Immature 阶段：firstThreshold - unlockThreshold 的进度 (0-1)
+    /// - Mature 阶段：固定返回 1
+    /// </summary>
+    public float WingGrowthProgress
+    {
+        get
+        {
+            if (currentFlyValue < firstThreshold)
+            {
+                return 0f;
+            }
+            else if (currentFlyValue < unlockThreshold)
+            {
+                float range = unlockThreshold - firstThreshold;
+                return range > 0f ? (currentFlyValue - firstThreshold) / range : 0f;
+            }
+            else
+            {
+                return 1f;
+            }
+        }
+    }
     
     #endregion
     
@@ -163,6 +243,9 @@ public class PlayerFlight : MonoBehaviour
         
         // 检查是否达到解锁阈值
         CheckUnlock();
+        
+        // 检查翅膀状态变化
+        CheckWingState();
     }
     
     /// <summary>
@@ -180,6 +263,9 @@ public class PlayerFlight : MonoBehaviour
         {
             StopFlying();
         }
+        
+        // 检查翅膀状态变化
+        CheckWingState();
     }
     
     /// <summary>
@@ -229,6 +315,26 @@ public class PlayerFlight : MonoBehaviour
         if (currentFlyValue >= unlockThreshold)
         {
             UnlockFlight();
+        }
+    }
+    
+    /// <summary>
+    /// 检查翅膀状态是否发生变化
+    /// 如果状态改变，触发 OnWingStateChanged 事件
+    /// </summary>
+    private void CheckWingState()
+    {
+        WingState currentState = CurrentWingState;
+        
+        // 如果状态发生变化
+        if (currentState != lastWingState)
+        {
+            lastWingState = currentState;
+            
+            // 触发事件
+            OnWingStateChanged?.Invoke(currentState, WingGrowthProgress);
+            
+            Debug.Log($"PlayerFlight: 翅膀状态变化 -> {currentState}，进度: {WingGrowthProgress:P0}");
         }
     }
     
