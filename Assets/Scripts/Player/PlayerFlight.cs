@@ -17,14 +17,21 @@ public class PlayerFlight : MonoBehaviour
     [SerializeField] private float unlockThreshold = 50f;
     
     [Header("飞行参数")]
-    [Tooltip("飞行时的移动速度")]
+    [Tooltip("飞行时的水平移动速度")]
     [SerializeField] private float flySpeed = 8f;
     
     [Tooltip("每秒飞行消耗的 fly 值")]
     [SerializeField] private float flyCostPerSecond = 5f;
     
-    [Tooltip("飞行时的垂直移动速度")]
-    [SerializeField] private float flyVerticalSpeed = 6f;
+    [Tooltip("飞行时的向上速度")]
+    [SerializeField] private float flyUpSpeed = 6f;
+    
+    [Tooltip("正常重力值")]
+    [SerializeField] private float normalGravityScale = 3f;
+    
+    [Header("作弊调试")]
+    [Tooltip("作弊键每次增加的 fly 值")]
+    [SerializeField] private float cheatAddValue = 25f;
     
     #endregion
     
@@ -38,6 +45,10 @@ public class PlayerFlight : MonoBehaviour
     
     // 当前是否正在飞行
     private bool isFlying = false;
+    
+    // 用于防止跳跃后立即触发飞行
+    // 跳跃后需要松开空格再按住才能飞行
+    private bool waitingForSpaceRelease = false;
     
     // 刚体组件引用
     private Rigidbody2D rb;
@@ -101,10 +112,23 @@ public class PlayerFlight : MonoBehaviour
     
     private void Update()
     {
+        // 作弊键：按 F 快速增加 fly 值
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            AddFlyValue(cheatAddValue);
+            Debug.Log($"PlayerFlight: 作弊增加 {cheatAddValue} fly 值");
+        }
+        
         // 飞行能力未解锁时不处理飞行逻辑
         if (!isFlightUnlocked)
         {
             return;
+        }
+        
+        // 检测空格是否松开
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            waitingForSpaceRelease = false;
         }
         
         // 检测飞行输入
@@ -213,17 +237,35 @@ public class PlayerFlight : MonoBehaviour
     /// </summary>
     private void HandleFlightInput()
     {
-        // 按住空格键在空中时进入飞行状态
-        // 注意：需要确保不是在地面（地面上应该触发跳跃）
-        if (Input.GetKey(KeyCode.Space) && !IsPlayerGrounded())
+        // 地面时，不触发飞行，等待跳跃
+        // 并且标记需要等待空格松开后才能飞行
+        if (IsPlayerGrounded())
         {
-            if (!isFlying && currentFlyValue > 0f)
+            // 在地面时，如果正在飞行则停止
+            if (isFlying)
+            {
+                StopFlying();
+            }
+            // 标记等待空格松开（用于防止跳跃后立即飞行）
+            if (Input.GetKey(KeyCode.Space))
+            {
+                waitingForSpaceRelease = true;
+            }
+            return;
+        }
+        
+        // 空中时，检测是否可以飞行
+        // 条件：飞行已解锁 + 按住空格 + 不在等待松开状态 + 有 fly 值
+        if (Input.GetKey(KeyCode.Space) && !waitingForSpaceRelease && currentFlyValue > 0f)
+        {
+            if (!isFlying)
             {
                 StartFlying();
             }
         }
         else
         {
+            // 松开空格或 fly 值耗尽，停止飞行
             if (isFlying)
             {
                 StopFlying();
@@ -254,6 +296,12 @@ public class PlayerFlight : MonoBehaviour
     {
         isFlying = false;
         
+        // 恢复正常重力
+        if (rb != null)
+        {
+            rb.gravityScale = normalGravityScale;
+        }
+        
         // 通知动画组件
         if (playerAnimation != null)
         {
@@ -281,17 +329,16 @@ public class PlayerFlight : MonoBehaviour
         // 获取水平输入
         float horizontalInput = Input.GetAxis("Horizontal");
         
-        // 获取垂直输入（上下移动）
-        float verticalInput = Input.GetAxis("Vertical");
-        
         // 计算飞行速度
+        // 水平方向：根据输入移动
+        // 垂直方向：按住空格向上飞
         float velocityX = horizontalInput * flySpeed;
-        float velocityY = verticalInput * flyVerticalSpeed;
+        float velocityY = flyUpSpeed;
         
         // 设置刚体速度
         rb.velocity = new Vector2(velocityX, velocityY);
         
-        // 减小重力影响，使飞行更加平稳
+        // 设置较小的重力，使飞行更加平稳
         rb.gravityScale = 0.5f;
     }
     
