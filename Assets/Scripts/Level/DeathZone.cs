@@ -41,7 +41,20 @@ public class DeathZone : MonoBehaviour
         // 播放死亡特效
         PlayDeathEffect(other.transform.position);
 
-        // 通知玩家重生管理器
+        // 优先使用 PlayerHealth 系统
+        PlayerHealth health = currentPlayer.GetComponent<PlayerHealth>();
+        if (health != null)
+        {
+            health.TakeDamage();
+            
+            if (showDebug)
+            {
+                Debug.Log($"DeathZone: 玩家进入死亡区域，剩余生命: {health.CurrentHealth}");
+            }
+            return;
+        }
+
+        // 如果没有 PlayerHealth，使用 PlayerRespawn
         PlayerRespawn respawn = currentPlayer.GetComponent<PlayerRespawn>();
         if (respawn != null)
         {
@@ -54,7 +67,7 @@ public class DeathZone : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("DeathZone: 玩家没有 PlayerRespawn 组件");
+            Debug.LogWarning("DeathZone: 玩家没有 PlayerRespawn 或 PlayerHealth 组件");
         }
     }
 

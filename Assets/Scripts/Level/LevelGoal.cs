@@ -189,8 +189,13 @@ public class LevelGoal : MonoBehaviour
 
         Debug.Log("LevelGoal: 关卡完成！");
 
-        // 如果有下一关卡，延迟加载
-        if (!string.IsNullOrEmpty(nextLevelName))
+        // 显示胜利界面
+        if (UIManager.Instance != null)
+        {
+            UIManager.Instance.ShowVictory();
+        }
+        // 如果有下一关卡且没有 UIManager，延迟加载
+        else if (!string.IsNullOrEmpty(nextLevelName))
         {
             Invoke(nameof(LoadNextLevel), levelTransitionDelay);
         }
