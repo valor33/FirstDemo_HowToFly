@@ -208,12 +208,13 @@ public class PlayerHealth : MonoBehaviour
 
         isDead = true;
 
+        // 禁用玩家控制
+        DisablePlayerControl();
+
         Debug.Log("PlayerHealth: 玩家死亡");
 
-        // 触发死亡事件
         OnDeath?.Invoke();
 
-        // 显示游戏结束界面
         if (UIManager.Instance != null)
         {
             UIManager.Instance.ShowGameOver();
@@ -286,6 +287,18 @@ public class PlayerHealth : MonoBehaviour
             Color color = spriteRenderer.color;
             color.a = alpha;
             spriteRenderer.color = color;
+        }
+    }
+
+    /// <summary>
+    /// 禁用玩家控制
+    /// </summary>
+    private void DisablePlayerControl()
+    {
+        PlayerController controller = GetComponent<PlayerController>();
+        if (controller != null)
+        {
+            controller.DisableControl();
         }
     }
 

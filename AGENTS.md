@@ -33,15 +33,18 @@ Assets/Scripts/
 │   ├── PlayerAnimation.cs    # 颜色状态变化
 │   └── WingsVisual.cs        # 翅膀视觉效果
 ├── Level/
+│   ├── PlayerRespawn.cs      # 重生逻辑
 │   ├── DeathZone.cs          # 死亡区域触发
 │   ├── LevelGoal.cs          # 关卡终点胜利
 │   ├── Checkpoint.cs         # 检查点重生
-│   └── PlayerRespawn.cs      # 重生逻辑
+│   └── BreakableWall.cs      # 可破坏墙壁
 ├── Platforms/
 │   └── BouncePlatform.cs     # 弹跳平台
 ├── Collectibles/
 │   ├── ICollectible.cs       # 收集物接口
 │   └── FlyValueItem.cs       # fly 值道具
+├── Camera/
+│   └── CameraFollow.cs       # 相机跟随
 └── UI/
     ├── UIManager.cs          # UI 管理器（单例）
     ├── GameUI.cs             # 游戏中 UI

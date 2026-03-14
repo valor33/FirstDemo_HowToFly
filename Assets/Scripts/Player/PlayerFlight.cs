@@ -192,32 +192,32 @@ public class PlayerFlight : MonoBehaviour
     
     private void Update()
     {
-        // 作弊键：按 F 快速增加 fly 值
+        if (playerController != null && !playerController.CanControl) return;
+        
         if (Input.GetKeyDown(KeyCode.F))
         {
             AddFlyValue(cheatAddValue);
             Debug.Log($"PlayerFlight: 作弊增加 {cheatAddValue} fly 值");
         }
         
-        // 飞行能力未解锁时不处理飞行逻辑
-        if (!isFlightUnlocked)
-        {
-            return;
-        }
+        if (!isFlightUnlocked) return;
         
-        // 检测空格是否松开
         if (Input.GetKeyUp(KeyCode.Space))
         {
             waitingForSpaceRelease = false;
         }
         
-        // 检测飞行输入
         HandleFlightInput();
     }
     
     private void FixedUpdate()
     {
-        // 如果正在飞行，处理飞行移动
+        if (playerController != null && !playerController.CanControl)
+        {
+            if (isFlying) StopFlying();
+            return;
+        }
+        
         if (isFlying)
         {
             HandleFlightMovement();

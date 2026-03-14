@@ -32,6 +32,13 @@ public class FlyValueItem : MonoBehaviour, ICollectible
     [Tooltip("上下浮动幅度")]
     [SerializeField] private float bobAmount = 0.1f;
 
+    [Header("检测参数")]
+    [Tooltip("检测半径")]
+    [SerializeField] private float detectRadius = 0.5f;
+
+    [Tooltip("是否启用持续检测（用于解决碰撞检测问题）")]
+    [SerializeField] private bool useContinuousDetection = true;
+
     [Header("组件引用")]
     [Tooltip("精灵渲染器（可选，用于淡出效果）")]
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -40,7 +47,6 @@ public class FlyValueItem : MonoBehaviour, ICollectible
 
     #region 私有字段
 
-    // 是否已被收集
     private bool isCollected = false;
 
     // 初始位置（用于浮动效果）
@@ -92,26 +98,48 @@ public class FlyValueItem : MonoBehaviour, ICollectible
 
     private void Update()
     {
-        // 如果已被收集，播放收集动画
         if (isCollected)
         {
             PlayCollectAnimation();
             return;
         }
 
-        // 播放浮动动画
-        PlayBobAnimation();
+        if (useContinuousDetection)
+        {
+            CheckPlayerInRange();
+        }
 
-        // 播放旋转动画
+        PlayBobAnimation();
         PlayRotateAnimation();
+    }
+
+    private void CheckPlayerInRange()
+    {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, detectRadius);
+        foreach (Collider2D hit in hits)
+        {
+            if (hit.CompareTag("Player"))
+            {
+                OnCollected(hit.gameObject);
+                return;
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // 检查是否可以被收集
         if (!CanBeCollected) return;
 
-        // 检查碰撞对象是否是玩家
+        if (other.CompareTag("Player"))
+        {
+            OnCollected(other.gameObject);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (!CanBeCollected) return;
+
         if (other.CompareTag("Player"))
         {
             OnCollected(other.gameObject);
@@ -276,6 +304,21 @@ public class FlyValueItem : MonoBehaviour, ICollectible
     {
         flyValueToAdd = value;
     }
+
+    #endregion
+
+    #region 编辑器可视化
+
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
+    {
+        if (useContinuousDetection)
+        {
+            Gizmos.color = new Color(0f, 1f, 0f, 0.3f);
+            Gizmos.DrawWireSphere(transform.position, detectRadius);
+        }
+    }
+#endif
 
     #endregion
 }

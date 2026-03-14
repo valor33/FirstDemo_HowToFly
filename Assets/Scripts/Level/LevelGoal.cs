@@ -42,11 +42,9 @@ public class LevelGoal : MonoBehaviour
 
     #region 私有字段
 
-    // 是否已触发
     private bool hasTriggered = false;
-
-    // 是否已完成通关
     private bool levelCompleted = false;
+    private GameObject currentPlayer;
 
     #endregion
 
@@ -121,16 +119,13 @@ public class LevelGoal : MonoBehaviour
     public void TriggerGoal(GameObject player)
     {
         hasTriggered = true;
+        currentPlayer = player;
 
-        // 触发事件
         OnGoalReached?.Invoke();
 
         Debug.Log($"LevelGoal: 玩家到达终点 {gameObject.name}");
 
-        // 播放胜利特效
         PlayVictoryEffect();
-
-        // 完成关卡
         CompleteLevel();
     }
 
@@ -177,24 +172,20 @@ public class LevelGoal : MonoBehaviour
         return true;
     }
 
-    /// <summary>
-    /// 完成关卡
-    /// </summary>
-    private void CompleteLevel()
+private void CompleteLevel()
     {
         levelCompleted = true;
-
-        // 触发事件
+        
+        DisablePlayerControl(currentPlayer);
+        
         OnLevelCompleted?.Invoke();
-
+        
         Debug.Log("LevelGoal: 关卡完成！");
 
-        // 显示胜利界面
         if (UIManager.Instance != null)
         {
             UIManager.Instance.ShowVictory();
         }
-        // 如果有下一关卡且没有 UIManager，延迟加载
         else if (!string.IsNullOrEmpty(nextLevelName))
         {
             Invoke(nameof(LoadNextLevel), levelTransitionDelay);
@@ -213,9 +204,17 @@ public class LevelGoal : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 播放胜利特效
-    /// </summary>
+    private void DisablePlayerControl(GameObject player)
+    {
+        if (player == null) return;
+        
+        PlayerController controller = player.GetComponent<PlayerController>();
+        if (controller != null)
+        {
+            controller.DisableControl();
+        }
+    }
+    
     private void PlayVictoryEffect()
     {
         if (victoryEffect == null) return;

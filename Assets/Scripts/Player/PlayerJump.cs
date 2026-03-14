@@ -97,11 +97,10 @@ public class PlayerJump : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        // 检测跳跃输入（空格键按下瞬间）
-        // 使用 GetKeyDown 而不是 GetKey，确保每次按键只触发一次跳跃
+        if (playerController != null && !playerController.CanControl) return;
+        
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            // 尝试执行跳跃
             TryJump();
         }
     }

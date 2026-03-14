@@ -22,7 +22,7 @@ public class StartPanel : MonoBehaviour
 
     [Header("设置")]
     [Tooltip("是否支持按任意键开始")]
-    [SerializeField] private bool anyKeyToStart = true;
+    [SerializeField] private bool anyKeyToStart = false;
 
     #endregion
 
@@ -30,10 +30,14 @@ public class StartPanel : MonoBehaviour
 
     private void Awake()
     {
-        // 绑定按钮事件
         if (startButton != null)
         {
             startButton.onClick.AddListener(OnStartButtonClicked);
+        }
+        
+        if (hintText != null)
+        {
+            hintText.gameObject.SetActive(anyKeyToStart);
         }
     }
 
