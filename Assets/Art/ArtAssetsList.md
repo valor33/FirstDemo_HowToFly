@@ -5,7 +5,8 @@
 - **项目名称**: How To Fly
 - **项目类型**: 2D 平台跳跃游戏
 - **分辨率参考**: 1920x1080
-- **像素风格建议**: 64x64 ~ 128x128 px（角色）
+- **美术风格**: 手绘卡通风格
+- **素材规格建议**: 128x128 px（角色） / 256x64 px（平台）
 
 ---
 
@@ -25,17 +26,17 @@
 
 | 名称 | 说明 | 规格 | 优先级 |
 |------|------|------|--------|
-| Player_Idle | 待机状态 | 64x64 px | 🔴 高 |
-| Player_Walk | 行走动画（可选4-8帧） | 64x64 px | 🟡 中 |
-| Player_Jump | 跳跃状态 | 64x64 px | 🔴 高 |
-| Player_Fly | 飞行状态 | 64x64 px | 🔴 高 |
+| Player_Idle | 待机状态 | 128x128 px | 🔴 高 |
+| Player_Walk | 行走动画（可选4-8帧） | 128x128 px | 🟡 中 |
+| Player_Jump | 跳跃状态 | 128x128 px | 🔴 高 |
+| Player_Fly | 飞行状态 | 128x128 px | 🔴 高 |
 
 ### 1.2 翅膀
 
 | 名称 | 说明 | 规格 | 优先级 |
 |------|------|------|--------|
-| Wing_Immature | 未成熟翅膀（35-49 fly值）<br>半透明、小尺寸、浅蓝色 | 32x32 px | 🔴 高 |
-| Wing_Mature | 成熟翅膀（50+ fly值）<br>不透明、完整、亮色 | 64x64 px | 🔴 高 |
+| Wing_Immature | 未成熟翅膀（35-49 fly值）<br>半透明、小尺寸、浅蓝色 | 64x64 px | 🔴 高 |
+| Wing_Mature | 成熟翅膀（50+ fly值）<br>不透明、完整、亮色 | 128x128 px | 🔴 高 |
 
 ---
 
@@ -45,26 +46,26 @@
 
 | 名称 | 说明 | 规格 | 优先级 |
 |------|------|------|--------|
-| Ground_Tile | 地面平台纹理<br>可平铺（9-slice） | 128x32 px | 🔴 高 |
-| Ground_Corner_Left | 地面左转角 | 32x32 px | 🟡 中 |
-| Ground_Corner_Right | 地面右转角 | 32x32 px | 🟡 中 |
+| Ground_Tile | 地面平台纹理<br>可平铺（9-slice） | 256x64 px | 🔴 高 |
+| Ground_Corner_Left | 地面左转角 | 64x64 px | 🟡 中 |
+| Ground_Corner_Right | 地面右转角 | 64x64 px | 🟡 中 |
 
 ### 2.2 洞穴
 
 | 名称 | 说明 | 规格 | 优先级 |
 |------|------|------|--------|
-| Cave_Wall | 洞穴墙壁/平台 | 64x32 px | 🟡 中 |
-| Cave_Floor | 洞穴底部 | 128x32 px | 🟡 中 |
-| Cave_Entrance | 洞穴入口装饰 | 64x64 px | 🟢 低 |
-| Cave_Exit | 洞穴出口装饰 | 64x32 px | 🟢 低 |
+| Cave_Wall | 洞穴墙壁/平台 | 128x64 px | 🟡 中 |
+| Cave_Floor | 洞穴底部 | 256x64 px | 🟡 中 |
+| Cave_Entrance | 洞穴入口装饰 | 128x128 px | 🟢 低 |
+| Cave_Exit | 洞穴出口装饰 | 128x64 px | 🟢 低 |
 
 ### 2.3 特殊平台
 
 | 名称 | 说明 | 规格 | 优先级 |
 |------|------|------|--------|
-| BouncePlatform | 弹跳平台（荷叶）<br>绿色、有弹性感 | 64x16 px | 🔴 高 |
-| BreakableWall | 可破坏墙壁<br>有裂纹/可破坏外观 | 32x64 px | 🟡 中 |
-| BreakableWall_Cracked | 破坏中状态（可选） | 32x64 px | 🟢 低 |
+| BouncePlatform | 弹跳平台（荷叶）<br>绿色、有弹性感 | 128x32 px | 🔴 高 |
+| BreakableWall | 可破坏墙壁<br>有裂纹/可破坏外观 | 64x128 px | 🟡 中 |
+| BreakableWall_Cracked | 破坏中状态（可选） | 64x128 px | 🟢 低 |
 
 ---
 
@@ -74,14 +75,14 @@
 
 | 名称 | 说明 | 规格 | 优先级 |
 |------|------|------|--------|
-| FlyItem_Small | 小型道具（+5 fly值）<br>发光能量球/羽毛 | 32x32 px | 🔴 高 |
-| FlyItem_Large | 大型道具（+50 fly值）<br>更亮、更大、特殊外观 | 48x48 px | 🔴 高 |
+| FlyItem_Small | 小型道具（+5 fly值）<br>发光能量球/羽毛 | 64x64 px | 🔴 高 |
+| FlyItem_Large | 大型道具（+50 fly值）<br>更亮、更大、特殊外观 | 96x96 px | 🔴 高 |
 
 ### 3.2 道具动画（可选）
 
 | 名称 | 说明 | 规格 | 优先级 |
 |------|------|------|--------|
-| FlyItem_Anim | 浮动/旋转动画（2-4帧） | 32x32 px | 🟡 中 |
+| FlyItem_Anim | 浮动/旋转动画（2-4帧） | 64x64 px | 🟡 中 |
 
 ---
 
@@ -91,22 +92,22 @@
 
 | 名称 | 说明 | 规格 | 优先级 |
 |------|------|------|--------|
-| Checkpoint_Inactive | 未激活状态<br>灰色/暗淡 | 32x64 px | 🟡 中 |
-| Checkpoint_Active | 激活状态<br>亮色/发光 | 32x64 px | 🟡 中 |
+| Checkpoint_Inactive | 未激活状态<br>灰色/暗淡 | 64x128 px | 🟡 中 |
+| Checkpoint_Active | 激活状态<br>亮色/发光 | 64x128 px | 🟡 中 |
 
 ### 4.2 终点
 
 | 名称 | 说明 | 规格 | 优先级 |
 |------|------|------|--------|
-| LevelGoal | 关卡终点<br>金色/发光标记 | 64x64 px | 🟡 中 |
-| LevelGoal_Glow | 发光效果叠加（可选） | 64x64 px | 🟢 低 |
+| LevelGoal | 关卡终点<br>金色/发光标记 | 128x128 px | 🟡 中 |
+| LevelGoal_Glow | 发光效果叠加（可选） | 128x128 px | 🟢 低 |
 
 ### 4.3 死亡区域
 
 | 名称 | 说明 | 规格 | 优先级 |
 |------|------|------|--------|
-| DeathZone_Spike | 尖刺装饰 | 32x16 px | 🟢 低 |
-| DeathZone_Warning | 危险警告标志 | 64x64 px | 🟢 低 |
+| DeathZone_Spike | 尖刺装饰 | 64x32 px | 🟢 低 |
+| DeathZone_Warning | 危险警告标志 | 128x128 px | 🟢 低 |
 
 ---
 
@@ -122,30 +123,30 @@
 
 | 名称 | 说明 | 规格 | 优先级 |
 |------|------|------|--------|
-| Button_Normal | 按钮正常状态 | 160x40 px | 🟡 中 |
-| Button_Hover | 按钮悬停状态 | 160x40 px | 🟡 中 |
-| Button_Pressed | 按钮按下状态 | 160x40 px | 🟡 中 |
+| Button_Normal | 按钮正常状态 | 320x80 px | 🟡 中 |
+| Button_Hover | 按钮悬停状态 | 320x80 px | 🟡 中 |
+| Button_Pressed | 按钮按下状态 | 320x80 px | 🟡 中 |
 
 ### 5.3 生命值
 
 | 名称 | 说明 | 规格 | 优先级 |
 |------|------|------|--------|
-| Heart_Full | 满生命值心形 | 32x32 px | 🟡 中 |
-| Heart_Empty | 空生命值心形 | 32x32 px | 🟡 中 |
+| Heart_Full | 满生命值心形 | 64x64 px | 🟡 中 |
+| Heart_Empty | 空生命值心形 | 64x64 px | 🟡 中 |
 
 ### 5.4 面板背景
 
 | 名称 | 说明 | 规格 | 优先级 |
 |------|------|------|--------|
-| Panel_Background | 半透明面板背景<br>可9-slice | 256x256 px | 🟢 低 |
+| Panel_Background | 半透明面板背景<br>可9-slice | 512x512 px | 🟢 低 |
 
 ### 5.5 Fly 值显示（可选）
 
 | 名称 | 说明 | 规格 | 优先级 |
 |------|------|------|--------|
-| FlyBar_Background | 进度条背景 | 128x16 px | 🟢 低 |
-| FlyBar_Fill | 进度条填充 | 128x16 px | 🟢 低 |
-| FlyIcon | Fly 值图标 | 24x24 px | 🟢 低 |
+| FlyBar_Background | 进度条背景 | 256x32 px | 🟢 低 |
+| FlyBar_Fill | 进度条填充 | 256x32 px | 🟢 低 |
+| FlyIcon | Fly 值图标 | 48x48 px | 🟢 低 |
 
 ---
 
@@ -155,11 +156,11 @@
 
 | 名称 | 说明 | 规格 | 优先级 |
 |------|------|------|--------|
-| Effect_Break | 墙壁破碎碎片 | 16x16 px | 🟡 中 |
-| Effect_Dust | 灰尘粒子 | 8x8 px | 🟡 中 |
-| Effect_Sparkle | 收集闪光 | 16x16 px | 🟡 中 |
-| Effect_Unlock | 解锁飞行光芒 | 64x64 px | 🟡 中 |
-| Effect_Death | 死亡消散效果 | 32x32 px | 🟢 低 |
+| Effect_Break | 墙壁破碎碎片 | 32x32 px | 🟡 中 |
+| Effect_Dust | 灰尘粒子 | 16x16 px | 🟡 中 |
+| Effect_Sparkle | 收集闪光 | 32x32 px | 🟡 中 |
+| Effect_Unlock | 解锁飞行光芒 | 128x128 px | 🟡 中 |
+| Effect_Death | 死亡消散效果 | 64x64 px | 🟢 低 |
 
 ---
 
@@ -202,7 +203,7 @@
 ```
 Texture Type: Sprite (2D and UI)
 Pixels Per Unit: 100
-Filter Mode: Point (像素风格) / Bilinear (平滑风格)
+Filter Mode: Bilinear (平滑风格，适合手绘卡通)
 Compression: None (最佳质量)
 ```
 
@@ -212,7 +213,7 @@ Compression: None (最佳质量)
 
 ```
 Border 设置: 根据素材边缘像素调整
-例: Ground_Tile Border = 4,4,4,4
+例: Ground_Tile Border = 8,8,8,8
 ```
 
 ### 动画精灵
@@ -266,9 +267,10 @@ Assets/
 ## 备注
 
 1. 所有素材建议使用 **PNG 格式**，支持透明通道
-2. 像素风格游戏使用 **Point Filter**，避免模糊
+2. 手绘卡通风格使用 **Bilinear Filter**，保持边缘平滑
 3. 动画帧数建议 **4-8 帧**，保证流畅同时减少工作量
 4. 背景可使用 **渐变或平铺**，减少素材尺寸
+5. 保持线条粗细一致，建议 **2-4px 描边**
 
 ---
 
@@ -278,11 +280,11 @@ Assets/
 
 | 工具 | 适用场景 | 特点 |
 |------|----------|------|
+| **Geminibanana** | 角色、背景、道具 | 免费，易上手，适合手绘风格 |
 | **Midjourney** | 角色、背景、概念图 | 艺术感强，风格多样 |
 | **DALL-E 3** | UI图标、道具、Logo | 理解准确，适合具体描述 |
-| **Stable Diffusion** | 批量生成、像素风格 | 开源免费，可本地运行 |
 | **Leonardo.AI** | 游戏素材专用 | 支持透明背景，游戏素材优化 |
-| **PixelLab** | 像素风格素材 | 专注像素艺术生成 |
+| **Stable Diffusion** | 批量生成 | 开源免费，可本地运行 |
 
 ---
 
@@ -291,16 +293,17 @@ Assets/
 在所有提示词中添加以下关键词保持风格一致：
 
 ```
-[基础风格]
-pixel art style, game asset, 2D sprite, transparent background, 
-simple design, clean lines, vibrant colors
+[手绘卡通风格 - 基础]
+hand-drawn cartoon style, 2D game asset, flat design, 
+clean lines, vibrant colors, simple shapes, 
+transparent background PNG, vector art style
 
-[像素风格变体]
-16-bit pixel art        # 16位像素风格
-32-bit pixel art        # 32位像素风格
-SNES style              # 超级任天堂风格
-NES style               # 红白机风格
-retro game aesthetic    # 复古游戏美学
+[风格变体]
+cute cartoon style        # 可爱卡通风格
+flat design               # 扁平化设计
+minimalist cartoon        # 极简卡通
+whimsical illustration    # 异想天开插画风格
+kid-friendly art style    # 儿童友好风格
 ```
 
 ---
@@ -311,93 +314,93 @@ retro game aesthetic    # 复古游戏美学
 
 ```
 [通用模板]
-pixel art sprite of a [角色描述], [姿态], front view, 
-game character, 64x64 pixels, transparent background PNG, 
-simple design, vibrant colors, no antialiasing
+hand-drawn cartoon [角色描述], [姿态], front view, 
+game character, 128x128 pixels, transparent background PNG, 
+simple design, vibrant colors, flat design, clean black outline
 
 [示例 - 待机状态]
-pixel art sprite of a cute small bird character standing idle, 
-front view, game character, 64x64 pixels, transparent background PNG, 
-orange and white feathers, simple design, no antialiasing
+hand-drawn cartoon cute small bird character standing idle, 
+front view, game character, 128x128 pixels, transparent background PNG, 
+orange and white feathers, simple design, flat design, clean black outline
 
 [示例 - 飞行状态]
-pixel art sprite of a cute small bird flying with spread wings, 
-side view, game character, 64x64 pixels, transparent background PNG, 
-dynamic pose, glowing blue wings, no antialiasing
+hand-drawn cartoon cute small bird flying with spread wings, 
+side view, game character, 128x128 pixels, transparent background PNG, 
+dynamic pose, glowing blue wings, flat design, clean black outline
 ```
 
 #### 2. 翅膀
 
 ```
 [未成熟翅膀]
-pixel art sprite of small translucent light blue wings, 
-32x32 pixels, transparent background PNG, 
-immature appearance, 60% opacity, simple feathers
+hand-drawn cartoon small translucent light blue wings, 
+64x64 pixels, transparent background PNG, 
+immature appearance, 60% opacity, simple feathers, flat design
 
 [成熟翅膀]
-pixel art sprite of large majestic bright blue wings, 
-64x64 pixels, transparent background PNG, 
-mature appearance, fully opaque, detailed feathers, glowing effect
+hand-drawn cartoon large majestic bright blue wings, 
+128x128 pixels, transparent background PNG, 
+mature appearance, fully opaque, detailed feathers, glowing effect, flat design
 ```
 
 #### 3. 平台/地面
 
 ```
 [通用模板]
-pixel art tile of [平台描述], side view, 
-seamless tileable, 128x32 pixels, transparent background PNG, 
-game platform asset, simple texture
+hand-drawn cartoon [平台描述], side view, 
+seamless tileable, 256x64 pixels, transparent background PNG, 
+game platform asset, simple texture, flat design
 
 [示例 - 地面]
-pixel art tile of grass and dirt ground platform, side view, 
-seamless tileable, 128x32 pixels, transparent background PNG, 
-brown earth with green grass on top, game platform asset
+hand-drawn cartoon grass and dirt ground platform, side view, 
+seamless tileable, 256x64 pixels, transparent background PNG, 
+brown earth with green grass on top, game platform asset, flat design
 
 [示例 - 弹跳平台（荷叶）]
-pixel art sprite of a green lily pad, top-down view, 
-64x16 pixels, transparent background PNG, 
-bouncy appearance, game platform asset, vibrant green
+hand-drawn cartoon green lily pad, top-down view, 
+128x32 pixels, transparent background PNG, 
+bouncy appearance, game platform asset, vibrant green, flat design
 ```
 
 #### 4. 洞穴素材
 
 ```
 [洞穴墙壁]
-pixel art tile of dark rocky cave wall, side view, 
-64x32 pixels, transparent background PNG, 
-mossy rocks, dark blue-gray tones, game environment
+hand-drawn cartoon dark rocky cave wall, side view, 
+128x64 pixels, transparent background PNG, 
+mossy rocks, dark blue-gray tones, game environment, flat design
 
 [洞穴平台]
-pixel art tile of stone platform inside cave, 
-64x32 pixels, transparent background PNG, 
-rough rocky texture, dark colors, game platform
+hand-drawn cartoon stone platform inside cave, 
+128x64 pixels, transparent background PNG, 
+rough rocky texture, dark colors, game platform, flat design
 ```
 
 #### 5. 收集物
 
 ```
 [小型道具]
-pixel art sprite of glowing golden energy orb, 
-32x32 pixels, transparent background PNG, 
-floating, magical aura, game collectible, bright colors
+hand-drawn cartoon glowing golden energy orb, 
+64x64 pixels, transparent background PNG, 
+floating, magical aura, game collectible, bright colors, flat design
 
 [大型道具]
-pixel art sprite of large glowing cyan crystal, 
-48x48 pixels, transparent background PNG, 
-powerful appearance, magical effect, game collectible
+hand-drawn cartoon large glowing cyan crystal, 
+96x96 pixels, transparent background PNG, 
+powerful appearance, magical effect, game collectible, flat design
 ```
 
 #### 6. UI 素材
 
 ```
 [按钮]
-pixel art button for game UI, "Start Game" text area, 
-160x40 pixels, rounded corners, blue gradient background, 
-three states: normal, hover, pressed, simple design
+hand-drawn cartoon button for game UI, "Start Game" text area, 
+320x80 pixels, rounded corners, blue gradient background, 
+three states: normal, hover, pressed, simple design, flat design
 
 [心形图标]
-pixel art heart icon for health UI, 32x32 pixels, 
-red heart shape, simple design, game UI element, 
+hand-drawn cartoon heart icon for health UI, 64x64 pixels, 
+red heart shape, simple design, game UI element, flat design, 
 two versions: full red and empty outline
 ```
 
@@ -405,14 +408,14 @@ two versions: full red and empty outline
 
 ```
 [天空背景]
-pixel art sky background, gradient from light blue to purple, 
+hand-drawn cartoon sky background, gradient from light blue to purple, 
 1920x1080 pixels, soft clouds, sunset atmosphere, 
-game background, peaceful mood, no characters
+game background, peaceful mood, no characters, flat design
 
 [远景层]
-pixel art parallax background layer, distant mountains and clouds, 
+hand-drawn cartoon parallax background layer, distant mountains and clouds, 
 1920x480 pixels, pastel colors, game background, 
-silhouette style, simple shapes
+silhouette style, simple shapes, flat design
 ```
 
 ---
@@ -421,16 +424,16 @@ silhouette style, simple shapes
 
 | AI工具 | 推荐设置 |
 |--------|----------|
+| **Geminibanana** | 说明 "transparent background PNG" + 具体尺寸 + "hand-drawn cartoon style" |
 | **Midjourney** | `--ar 1:1` (角色) / `--ar 4:1` (平台) + `--no background` |
 | **DALL-E 3** | 明确说明 "transparent background PNG" + 尺寸 |
-| **Stable Diffusion** | 使用 `--width --height` 参数 + 透明背景插件 |
 | **Leonardo.AI** | 选择 "Game Asset" 预设 + 透明背景选项 |
 
 **具体尺寸配置**:
 
 ```
-角色/道具: 512x512 → 后期裁剪到 64x64
-平台: 512x128 → 后期裁剪到实际尺寸
+角色/道具: 512x512 → 后期裁剪到 128x128
+平台: 512x256 → 后期裁剪到实际尺寸
 背景: 1920x1080 或 1024x576
 UI: 根据实际需求设置
 ```
@@ -444,11 +447,12 @@ UI: 根据实际需求设置
 | 检查项 | 要求 |
 |--------|------|
 | ✓ 色调一致 | 所有素材使用相同色板 |
-| ✓ 像素密度 | 角色和道具使用相同像素密度 |
-| ✓ 边缘处理 | 统一的边缘锐利度，无抗锯齿 |
+| ✓ 线条风格 | 统一的描边粗细（建议 2-4px） |
+| ✓ 边缘处理 | 干净的黑色描边，无模糊 |
 | ✓ 透视角度 | 统一的视角（侧视/俯视/正视） |
 | ✓ 光源方向 | 所有素材光源来自同一方向 |
 | ✓ 对比度 | 背景与前景有足够区分度 |
+| ✓ 色彩饱和度 | 统一的鲜艳程度 |
 
 ---
 
@@ -463,7 +467,7 @@ UI: 根据实际需求设置
      ↓
 4. 调整色彩饱和度/对比度
      ↓
-5. 统一像素风格（可选：使用像素化滤镜）
+5. 统一线条粗细和风格
      ↓
 6. 导出 PNG（透明背景）
      ↓
@@ -474,10 +478,11 @@ UI: 根据实际需求设置
 
 | 工具 | 用途 |
 |------|------|
-| **Aseprite** | 像素编辑、动画制作、批量处理 |
-| **Photoshop/GIMP** | 高级编辑、批量处理 |
+| **Photoshop/GIMP** | 高级编辑、批量处理、描边统一 |
 | **Photopea** | 在线免费编辑，支持 PSD |
+| **Figma** | 矢量风格编辑，适合 UI |
 | **Pixlr** | 在线快速编辑 |
+| **Aseprite** | 动画制作、帧编辑 |
 
 ---
 
@@ -486,15 +491,14 @@ UI: 根据实际需求设置
 **一次生成多个素材**:
 
 ```
-[Midjourney 示例]
-pixel art game assets sheet, includes: 
-1. bird character idle pose, 
-2. bird character jumping pose, 
-3. bird character flying pose, 
-4. small wings, 
-5. large wings, 
-all on transparent background, 512x512 sprite sheet
---ar 1:1 --no background
+[Geminibanana 示例]
+hand-drawn cartoon game assets sheet, includes: 
+1. cute bird character idle pose, 
+2. cute bird character jumping pose, 
+3. cute bird character flying pose, 
+4. small translucent blue wings, 
+5. large bright blue wings, 
+all on transparent background, 512x512 sprite sheet, flat design
 ```
 
 **分批生成策略**:
@@ -514,10 +518,12 @@ all on transparent background, 512x512 sprite sheet
 | 问题 | 解决方案 |
 |------|----------|
 | 背景不透明 | 使用 Photoshop/Photopea 去除背景，或使用 Leonardo.AI 透明背景功能 |
-| 尺寸不合适 | 用 Aseprite/Photoshop 裁剪或缩放，保持像素锐利 |
-| 风格不统一 | 固定使用同一组关键词，或使用 LoRA 模型保持风格 |
-| 边缘模糊 | 使用锐化滤镜，或在像素软件中重绘边缘 |
-| 颜色太多 | 使用 Aseprite 减少颜色数，统一到 16-32 色板 |
+| 尺寸不合适 | 用 Photoshop 裁剪或缩放 |
+| 风格不统一 | 固定使用同一组关键词，保持提示词结构一致 |
+| 边缘模糊 | 使用锐化滤镜，或在编辑软件中重绘描边 |
+| 颜色太暗/太亮 | 调整饱和度和对比度，统一色板 |
+| 线条粗细不一 | 使用描边滤镜统一添加黑色描边 |
+| 风格太复杂 | 添加 "simple design, minimal details" 关键词 |
 
 ---
 
