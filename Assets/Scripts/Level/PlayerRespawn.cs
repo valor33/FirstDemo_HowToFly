@@ -171,11 +171,11 @@ public class PlayerRespawn : MonoBehaviour
             playerFlight.SetFlyValue(0f);
         }
 
-        // 重置翅膀视觉
-        WingsVisual wingsVisual = GetComponentInChildren<WingsVisual>();
-        if (wingsVisual != null)
+        // 重置光晕视觉
+        AuraVisual auraVisual = GetComponentInChildren<AuraVisual>();
+        if (auraVisual != null)
         {
-            wingsVisual.ResetWings();
+            auraVisual.ResetAura();
         }
 
         Debug.Log("PlayerRespawn: 重置到游戏初始状态");
@@ -190,7 +190,6 @@ public class PlayerRespawn : MonoBehaviour
     /// </summary>
     private void ResetPlayerState()
     {
-        // 重置 fly 值（如果配置为重置）
         if (resetFlyValueOnRespawn && playerFlight != null)
         {
             if (respawnFlyValue >= 0f)
@@ -203,17 +202,20 @@ public class PlayerRespawn : MonoBehaviour
             }
         }
 
-        // 重置动画状态
         if (playerAnimation != null)
         {
             playerAnimation.ResetState();
+            
+            if (playerFlight != null && playerFlight.HasUnlockedWings)
+            {
+                playerAnimation.OnWingsUnlocked();
+            }
         }
 
-        // 重置翅膀视觉
-        WingsVisual wingsVisual = GetComponentInChildren<WingsVisual>();
-        if (wingsVisual != null)
+        AuraVisual auraVisual = GetComponentInChildren<AuraVisual>();
+        if (auraVisual != null && playerFlight != null)
         {
-            wingsVisual.ResetWings();
+            auraVisual.SyncWithPlayerFlight(playerFlight);
         }
     }
 

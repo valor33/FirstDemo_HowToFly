@@ -546,3 +546,706 @@ all on transparent background, 512x512 sprite sheet, flat design
 ```
 
 将色板保存为图片，在生成时作为参考图输入。
+
+---
+
+## 定制化提示词方案（Geminibanana）
+
+> **风格定义**：背景采用极乐迪斯科风格（油画质感、复古、有光影深度），人物采用抽象派风格（几何化、简约、象征性）
+>
+> **红色内容**为可自定义替换的部分
+
+---
+
+### 风格关键词速查
+
+```
+[极乐迪斯科风格 - 用于环境/背景]
+Disco Elysium style, oil painting texture, atmospheric lighting, 
+warm muted colors, painterly brushstrokes, vintage aesthetic
+
+[抽象派风格 - 用于角色/UI]
+abstract minimalist, geometric shapes, simple silhouette, 
+simplified form, expressive but minimal details
+```
+
+---
+
+### 1. 玩家角色（抽象派）
+
+#### 1.1 主角概念图（确定造型）
+
+**英文提示词**：
+```
+abstract minimalist <font color="red">bird-like creature</font> concept design, 
+geometric shapes, simple silhouette, <font color="red">warm orange and white</font> color palette, 
+indie game character, front view, solid background for reference, 
+oil painting texture influence, expressive but simplified form
+```
+
+**中文翻译**：
+抽象极简风格的 <font color="red">鸟形生物</font> 概念设计，几何形状，简约剪影，<font color="red">温暖的橙色和白色</font> 色调，独立游戏角色，正视图，纯色背景作为参考，油画质感影响，富有表现力但简化的形态。
+
+**可自定义内容**：
+| 原内容 | 可替换为 |
+|--------|----------|
+| <font color="red">bird-like creature</font> | spirit creature, ghost character, winged blob, feathered being 等 |
+| <font color="red">warm orange and white</font> | cool blue and white, golden and cream, red and black 等 |
+
+---
+
+#### 1.2 Player_Idle（待机状态）
+
+**英文提示词**：
+```
+abstract minimalist <font color="red">bird creature</font> standing idle, 
+geometric shapes, simple silhouette, <font color="red">orange white cream</font> color, 
+128x128 pixel sprite, transparent background PNG, side view, 
+clean edges, indie game asset, no background
+```
+
+**中文翻译**：
+抽象极简风格的 <font color="red">鸟形生物</font> 静止站立，几何形状，简约剪影，<font color="red">橙白奶油色</font>，128x128像素精灵，透明背景PNG，侧视图，干净边缘，独立游戏素材，无背景。
+
+---
+
+#### 1.3 Player_Jump（跳跃状态）
+
+**英文提示词**：
+```
+abstract minimalist <font color="red">bird creature</font> jumping pose, 
+geometric shapes, dynamic silhouette, <font color="red">orange white cream</font> color, 
+128x128 pixel sprite, transparent background PNG, side view, 
+upward motion, stretched form, indie game asset, no background
+```
+
+**中文翻译**：
+抽象极简风格的 <font color="red">鸟形生物</font> 跳跃姿态，几何形状，动态剪影，<font color="red">橙白奶油色</font>，128x128像素精灵，透明背景PNG，侧视图，向上运动，拉伸形态，独立游戏素材，无背景。
+
+---
+
+#### 1.4 Player_Fly（飞行状态）
+
+**英文提示词**：
+```
+abstract minimalist <font color="red">bird creature</font> flying, 
+geometric shapes, spread wings silhouette, <font color="red">orange white cream</font> color, 
+128x128 pixel sprite, transparent background PNG, side view, 
+<font color="red">glowing effect</font> around body, indie game asset, no background
+```
+
+**中文翻译**：
+抽象极简风格的 <font color="red">鸟形生物</font> 飞行中，几何形状，展开翅膀剪影，<font color="red">橙白奶油色</font>，128x128像素精灵，透明背景PNG，侧视图，身体周围<font color="red">发光效果</font>，独立游戏素材，无背景。
+
+**可自定义内容**：
+| 原内容 | 可替换为 |
+|--------|----------|
+| <font color="red">glowing effect</font> | aura effect, sparkles, energy trail, light particles 等 |
+
+---
+
+#### 1.5 Player_Walk（行走动画4帧）
+
+**英文提示词**：
+```
+abstract minimalist <font color="red">bird creature</font> walking animation, 
+<font color="red">4</font> frame sprite sheet, geometric shapes, <font color="red">orange white cream</font> color, 
+each frame 128x128 pixel, transparent background PNG, side view, 
+walking cycle animation, indie game asset, no background, horizontal sprite strip
+```
+
+**中文翻译**：
+抽象极简风格的 <font color="red">鸟形生物</font> 行走动画，<font color="red">4</font>帧精灵图，几何形状，<font color="red">橙白奶油色</font>，每帧128x128像素，透明背景PNG，侧视图，行走循环动画，独立游戏素材，无背景，水平精灵条。
+
+**可自定义内容**：
+| 原内容 | 可替换为 |
+|--------|----------|
+| <font color="red">4</font> frame | 6 frame, 8 frame（帧数越多动画越流畅） |
+
+---
+
+### 2. 翅膀（抽象派）
+
+#### 2.1 Wing_Immature（未成熟翅膀，35-49 fly值）
+
+**英文提示词**：
+```
+abstract minimalist <font color="red">small translucent wings</font>, 
+geometric <font color="red">feather</font> shapes, <font color="red">light blue #80B4FF</font>, <font color="red">60%</font> opacity, 
+64x64 pixel sprite, transparent background PNG, 
+glowing ethereal effect, simple design, indie game asset, no background
+```
+
+**中文翻译**：
+抽象极简风格的 <font color="red">小型半透明翅膀</font>，几何化<font color="red">羽毛</font>形状，<font color="red">浅蓝色 #80B4FF</font>，<font color="red">60%</font>透明度，64x64像素精灵，透明背景PNG，发光空灵效果，简约设计，独立游戏素材，无背景。
+
+**可自定义内容**：
+| 原内容 | 可替换为 |
+|--------|----------|
+| <font color="red">small translucent wings</font> | tiny ethereal wings, mini spirit wings, ghostly wings 等 |
+| <font color="red">feather</font> | crystal, energy, light, geometric 等 |
+| <font color="red">light blue #80B4FF</font> | cyan #00CED1, pale gold #FFD700, lavender #E6E6FA 等 |
+| <font color="red">60%</font> opacity | 40% opacity, 50% opacity 等 |
+
+---
+
+#### 2.2 Wing_Mature（成熟翅膀，50+ fly值）
+
+**英文提示词**：
+```
+abstract minimalist <font color="red">majestic wings</font>, 
+geometric <font color="red">feather</font> shapes, <font color="red">bright blue #4D99FF</font>, fully opaque, 
+128x128 pixel sprite, transparent background PNG, 
+glowing radiant effect, detailed but simplified, indie game asset, no background
+```
+
+**中文翻译**：
+抽象极简风格的 <font color="red">宏伟翅膀</font>，几何化<font color="red">羽毛</font>形状，<font color="red">亮蓝色 #4D99FF</font>，完全不透明，128x128像素精灵，透明背景PNG，发光辐射效果，细节但简化，独立游戏素材，无背景。
+
+**可自定义内容**：
+| 原内容 | 可替换为 |
+|--------|----------|
+| <font color="red">majestic wings</font> | powerful wings, large angelic wings, grand spirit wings 等 |
+| <font color="red">bright blue #4D99FF</font> | golden #FFD700, cyan #00CED1, purple #9370DB 等 |
+
+---
+
+### 3. 环境/平台（极乐迪斯科风格）
+
+#### 3.1 Ground_Tile（地面平台）
+
+**英文提示词**：
+```
+Disco Elysium style game platform, <font color="red">grass and dirt ground</font>, 
+oil painting texture, <font color="red">warm earth tones brown and green</font>, 
+seamless tileable, 256x64 pixel, transparent background PNG, 
+side view, atmospheric lighting, indie game asset, no background
+```
+
+**中文翻译**：
+极乐迪斯科风格游戏平台，<font color="red">草地和泥土地面</font>，油画质感，<font color="red">温暖的土褐色和绿色</font>，无缝平铺，256x64像素，透明背景PNG，侧视图，大气光影，独立游戏素材，无背景。
+
+**可自定义内容**：
+| 原内容 | 可替换为 |
+|--------|----------|
+| <font color="red">grass and dirt ground</font> | stone floor, wooden planks, mossy rocks, sandy desert 等 |
+| <font color="red">warm earth tones brown and green</font> | cool blue-gray tones, dark purple tones, golden autumn tones 等 |
+
+---
+
+#### 3.2 Ground_Corner（地面转角）
+
+**英文提示词**：
+```
+Disco Elysium style ground corner piece, <font color="red">grass and dirt</font>, 
+oil painting texture, <font color="red">warm earth tones</font>, 
+64x64 pixel, transparent background PNG, 
+side view, indie game asset, no background
+```
+
+**中文翻译**：
+极乐迪斯科风格地面转角块，<font color="red">草地和泥土</font>，油画质感，<font color="red">温暖土色调</font>，64x64像素，透明背景PNG，侧视图，独立游戏素材，无背景。
+
+---
+
+#### 3.3 BouncePlatform（弹跳平台/荷叶）
+
+**英文提示词**：
+```
+Disco Elysium style <font color="red">lily pad</font> platform, bouncy appearance, 
+oil painting texture, <font color="red">vibrant green with warm highlights</font>, 
+128x32 pixel, transparent background PNG, 
+top-down view, indie game asset, no background
+```
+
+**中文翻译**：
+极乐迪斯科风格 <font color="red">荷叶</font> 平台，有弹性的外观，油画质感，<font color="red">鲜艳绿色配温暖高光</font>，128x32像素，透明背景PNG，俯视图，独立游戏素材，无背景。
+
+**可自定义内容**：
+| 原内容 | 可替换为 |
+|--------|----------|
+| <font color="red">lily pad</font> | mushroom, trampoline, cloud, crystal pad 等 |
+| <font color="red">vibrant green with warm highlights</font> | blue with golden glow, purple with pink tips 等 |
+
+---
+
+#### 3.4 Cave_Wall（洞穴墙壁）
+
+**英文提示词**：
+```
+Disco Elysium style cave wall, <font color="red">dark rocky texture</font>, 
+oil painting texture, <font color="red">blue-gray mossy tones</font>, atmospheric shadows, 
+128x64 pixel, transparent background PNG, 
+side view, indie game asset, no background
+```
+
+**中文翻译**：
+极乐迪斯科风格洞穴墙壁，<font color="red">深色岩石纹理</font>，油画质感，<font color="red">蓝灰色苔藓色调</font>，大气阴影，128x64像素，透明背景PNG，侧视图，独立游戏素材，无背景。
+
+**可自定义内容**：
+| 原内容 | 可替换为 |
+|--------|----------|
+| <font color="red">dark rocky texture</font> | crystal cave, ice cave, ancient stone, brick wall 等 |
+| <font color="red">blue-gray mossy tones</font> | warm brown tones, purple crystal tones, deep red tones 等 |
+
+---
+
+#### 3.5 Cave_Floor（洞穴地面）
+
+**英文提示词**：
+```
+Disco Elysium style cave floor platform, <font color="red">dark stone</font>, 
+oil painting texture, <font color="red">blue-gray tones</font>, atmospheric lighting, 
+256x64 pixel, transparent background PNG, 
+side view, indie game asset, no background
+```
+
+**中文翻译**：
+极乐迪斯科风格洞穴地面平台，<font color="red">深色石头</font>，油画质感，<font color="red">蓝灰色调</font>，大气光影，256x64像素，透明背景PNG，侧视图，独立游戏素材，无背景。
+
+---
+
+#### 3.6 BreakableWall（可破坏墙壁）
+
+**英文提示词**：
+```
+Disco Elysium style cracked <font color="red">stone wall</font>, breakable appearance, 
+oil painting texture, visible cracks and fissures, <font color="red">brown gray tones</font>, 
+64x128 pixel, transparent background PNG, 
+side view, indie game asset, no background
+```
+
+**中文翻译**：
+极乐迪斯科风格破裂的 <font color="red">石墙</font>，可破坏外观，油画质感，可见裂缝和裂隙，<font color="red">褐灰色调</font>，64x128像素，透明背景PNG，侧视图，独立游戏素材，无背景。
+
+**可自定义内容**：
+| 原内容 | 可替换为 |
+|--------|----------|
+| <font color="red">stone wall</font> | brick wall, wooden barrier, ice wall, crystal wall 等 |
+| <font color="red">brown gray tones</font> | dark purple tones, blue tones, red tones 等 |
+
+---
+
+### 4. 收集物（抽象派 + 发光效果）
+
+#### 4.1 FlyItem_Small（小型道具，+5 fly值）
+
+**英文提示词**：
+```
+abstract minimalist <font color="red">glowing energy orb</font>, small collectible, 
+geometric shape, <font color="red">golden #FFD700</font> color, magical aura, 
+64x64 pixel, transparent background PNG, 
+floating effect, glowing particles, indie game asset, no background
+```
+
+**中文翻译**：
+抽象极简风格的 <font color="red">发光能量球</font>，小型收集物，几何形状，<font color="red">金色 #FFD700</font>，魔法光环，64x64像素，透明背景PNG，漂浮效果，发光粒子，独立游戏素材，无背景。
+
+**可自定义内容**：
+| 原内容 | 可替换为 |
+|--------|----------|
+| <font color="red">glowing energy orb</font> | floating feather, spirit light, crystal shard, star fragment 等 |
+| <font color="red">golden #FFD700</font> | cyan #00CED1, purple #9370DB, green #00FF7F 等 |
+
+---
+
+#### 4.2 FlyItem_Large（大型道具，+50 fly值）
+
+**英文提示词**：
+```
+abstract minimalist <font color="red">large glowing crystal</font>, power-up collectible, 
+geometric faceted shape, <font color="red">cyan #00CED1</font> color, strong magical aura, 
+96x96 pixel, transparent background PNG, 
+radiant effect, sparkles, indie game asset, no background
+```
+
+**中文翻译**：
+抽象极简风格的 <font color="red">大型发光水晶</font>，强化收集物，几何切面形状，<font color="red">青色 #00CED1</font>，强烈魔法光环，96x96像素，透明背景PNG，辐射效果，闪光，独立游戏素材，无背景。
+
+**可自定义内容**：
+| 原内容 | 可替换为 |
+|--------|----------|
+| <font color="red">large glowing crystal</font> | spirit essence, power core, ancient artifact, magic gem 等 |
+| <font color="red">cyan #00CED1</font> | gold #FFD700, purple #9370DB, pink #FF69B4 等 |
+
+---
+
+#### 4.3 FlyItem_Anim（浮动动画4帧）
+
+**英文提示词**：
+```
+abstract minimalist <font color="red">glowing energy orb</font> animation, <font color="red">4</font> frame sprite sheet, 
+floating bobbing motion, geometric shape, <font color="red">golden</font> color, 
+each frame 64x64 pixel, transparent background PNG, 
+vertical sprite strip, indie game asset, no background
+```
+
+**中文翻译**：
+抽象极简风格的 <font color="red">发光能量球</font> 动画，<font color="red">4</font>帧精灵图，漂浮上下运动，几何形状，<font color="red">金色</font>，每帧64x64像素，透明背景PNG，垂直精灵条，独立游戏素材，无背景。
+
+---
+
+### 5. UI界面
+
+#### 5.1 Logo_Title（游戏标题）
+
+**英文提示词**：
+```
+Disco Elysium style game title logo "<font color="red">How To Fly</font>", 
+oil painting texture, hand-painted lettering, 
+<font color="red">warm gold and blue</font> colors, atmospheric glow, 
+512x128 pixel, transparent background PNG, 
+artistic typography, indie game, no background
+```
+
+**中文翻译**：
+极乐迪斯科风格游戏标题Logo "<font color="red">How To Fly</font>"，油画质感，手绘字体，<font color="red">温暖金色和蓝色</font>，大气发光，512x128像素，透明背景PNG，艺术字体，独立游戏，无背景。
+
+**可自定义内容**：
+| 原内容 | 可替换为 |
+|--------|----------|
+| <font color="red">How To Fly</font> | 你的游戏标题 |
+| <font color="red">warm gold and blue</font> | red and gold, purple and cyan, green and gold 等 |
+
+---
+
+#### 5.2 Button_Normal/Hover/Pressed（按钮三态）
+
+**英文提示词**：
+```
+Disco Elysium style game UI button, rounded rectangle, 
+oil painting texture, <font color="red">blue gradient with warm highlights</font>, 
+320x80 pixel, transparent background PNG, 
+text area in center, <font color="red">three states: normal hover pressed</font>, 
+indie game UI, no background
+```
+
+**中文翻译**：
+极乐迪斯科风格游戏UI按钮，圆角矩形，油画质感，<font color="red">蓝色渐变配温暖高光</font>，320x80像素，透明背景PNG，中央文字区域，<font color="red">三种状态：正常、悬停、按下</font>，独立游戏UI，无背景。
+
+**可自定义内容**：
+| 原内容 | 可替换为 |
+|--------|----------|
+| <font color="red">blue gradient with warm highlights</font> | green gradient, purple gradient, golden gradient 等 |
+| <font color="red">three states: normal hover pressed</font> | 可分别生成三种状态，用不同亮度区分 |
+
+---
+
+#### 5.3 Heart_Full/Empty（心形生命值）
+
+**英文提示词**：
+```
+abstract minimalist <font color="red">heart</font> icon, health UI element, 
+geometric simplified shape, 
+64x64 pixel, transparent background PNG, 
+<font color="red">full red version and empty outline version</font>, 
+indie game UI, no background
+```
+
+**中文翻译**：
+抽象极简风格的 <font color="red">心形</font> 图标，生命值UI元素，几何简化形状，64x64像素，透明背景PNG，<font color="red">实心红色版本和空心轮廓版本</font>，独立游戏UI，无背景。
+
+**可自定义内容**：
+| 原内容 | 可替换为 |
+|--------|----------|
+| <font color="red">heart</font> | star, diamond, orb, feather 等 |
+| <font color="red">full red version and empty outline version</font> | 可分别生成两个版本 |
+
+---
+
+#### 5.4 Panel_Background（面板背景）
+
+**英文提示词**：
+```
+Disco Elysium style UI panel background, 
+oil painting texture, <font color="red">semi-transparent dark blue</font>, 
+9-slice compatible edges, 
+512x512 pixel, transparent background PNG, 
+atmospheric vignette, indie game UI, no background
+```
+
+**中文翻译**：
+极乐迪斯科风格UI面板背景，油画质感，<font color="red">半透明深蓝色</font>，兼容9-slice边缘，512x512像素，透明背景PNG，大气暗角，独立游戏UI，无背景。
+
+**可自定义内容**：
+| 原内容 | 可替换为 |
+|--------|----------|
+| <font color="red">semi-transparent dark blue</font> | dark purple, dark green, warm brown 等 |
+
+---
+
+#### 5.5 FlyBar_Background/Fill（Fly值进度条）
+
+**英文提示词**：
+```
+abstract minimalist progress bar, fly value indicator, 
+geometric shape, clean design, 
+256x32 pixel, transparent background PNG, 
+background frame and <font color="red">glowing cyan</font> fill bar, 
+indie game UI, no background
+```
+
+**中文翻译**：
+抽象极简风格进度条，Fly值指示器，几何形状，干净设计，256x32像素，透明背景PNG，背景框架和<font color="red">发光青色</font>填充条，独立游戏UI，无背景。
+
+**可自定义内容**：
+| 原内容 | 可替换为 |
+|--------|----------|
+| <font color="red">glowing cyan</font> | glowing gold, glowing purple, glowing green 等 |
+
+---
+
+### 6. 关卡元素（补充）
+
+#### 6.1 Checkpoint_Inactive（检查点-未激活）
+
+**英文提示词**：
+```
+abstract minimalist <font color="red">checkpoint marker</font>, inactive state, 
+geometric <font color="red">pole with flag</font>, gray dim color, 
+64x128 pixel, transparent background PNG, 
+simple design, indie game asset, no background
+```
+
+**中文翻译**：
+抽象极简风格的 <font color="red">检查点标记</font>，未激活状态，几何化<font color="red">旗杆</font>，灰色暗淡色，64x128像素，透明背景PNG，简约设计，独立游戏素材，无背景。
+
+**可自定义内容**：
+| 原内容 | 可替换为 |
+|--------|----------|
+| <font color="red">checkpoint marker</font> | save point, respawn beacon, spirit totem 等 |
+| <font color="red">pole with flag</font> | crystal pillar, light beacon, floating orb 等 |
+
+---
+
+#### 6.2 Checkpoint_Active（检查点-激活）
+
+**英文提示词**：
+```
+abstract minimalist <font color="red">checkpoint marker</font>, active state, 
+geometric <font color="red">pole with flag</font>, <font color="red">bright green glowing</font>, 
+64x128 pixel, transparent background PNG, 
+magical aura effect, indie game asset, no background
+```
+
+**中文翻译**：
+抽象极简风格的 <font color="red">检查点标记</font>，激活状态，几何化<font color="red">旗杆</font>，<font color="red">亮绿色发光</font>，64x128像素，透明背景PNG，魔法光环效果，独立游戏素材，无背景。
+
+**可自定义内容**：
+| 原内容 | 可替换为 |
+|--------|----------|
+| <font color="red">bright green glowing</font> | golden glowing, cyan glowing, purple glowing 等 |
+
+---
+
+#### 6.3 LevelGoal（关卡终点）
+
+**英文提示词**：
+```
+abstract minimalist <font color="red">level goal marker</font>, 
+geometric <font color="red">portal or gate</font> shape, <font color="red">golden #FFD700</font> glow, 
+128x128 pixel, transparent background PNG, 
+radiant effect, destination marker, indie game asset, no background
+```
+
+**中文翻译**：
+抽象极简风格的 <font color="red">关卡终点标记</font>，几何化<font color="red">传送门或门</font>形状，<font color="red">金色 #FFD700</font>发光，128x128像素，透明背景PNG，辐射效果，终点标记，独立游戏素材，无背景。
+
+**可自定义内容**：
+| 原内容 | 可替换为 |
+|--------|----------|
+| <font color="red">level goal marker</font> | exit portal, finish line, destination beacon 等 |
+| <font color="red">portal or gate</font> | light beam, floating crystal, spirit gateway 等 |
+| <font color="red">golden #FFD700</font> | cyan #00CED1, purple #9370DB, silver #C0C0C0 等 |
+
+---
+
+### 7. 背景（极乐迪斯科风格）
+
+#### 7.1 BG_Sky（天空背景）
+
+**英文提示词**：
+```
+Disco Elysium style <font color="red">sky background</font>, 
+gradient from <font color="red">light blue to purple</font>, 
+oil painting texture, soft <font color="red">clouds</font>, <font color="red">sunset</font> atmosphere, 
+1920x1080 pixel, game background, 
+peaceful mood, no characters, atmospheric lighting
+```
+
+**中文翻译**：
+极乐迪斯科风格 <font color="red">天空背景</font>，从 <font color="red">浅蓝渐变到紫色</font>，油画质感，柔和的<font color="red">云朵</font>，<font color="red">日落</font>氛围，1920x1080像素，游戏背景，宁静情绪，无角色，大气光影。
+
+**可自定义内容**：
+| 原内容 | 可替换为 |
+|--------|----------|
+| <font color="red">sky background</font> | forest background, cave background, mountain background 等 |
+| <font color="red">light blue to purple</font> | orange to pink, cyan to deep blue, golden to red 等 |
+| <font color="red">clouds</font> | birds, stars, floating islands 等 |
+| <font color="red">sunset</font> | sunrise, night, dawn, dusk 等 |
+
+---
+
+#### 7.2 BG_Far（远景层-视差）
+
+**英文提示词**：
+```
+Disco Elysium style parallax background layer, distant <font color="red">mountains and clouds</font>, 
+oil painting texture, <font color="red">pastel colors</font>, 
+1920x480 pixel, transparent background PNG, 
+silhouette style, simple shapes, indie game asset, no background
+```
+
+**中文翻译**：
+极乐迪斯科风格视差背景层，远处的<font color="red">山脉和云朵</font>，油画质感，<font color="red">柔和色调</font>，1920x480像素，透明背景PNG，剪影风格，简约形状，独立游戏素材，无背景。
+
+**可自定义内容**：
+| 原内容 | 可替换为 |
+|--------|----------|
+| <font color="red">mountains and clouds</font> | trees and hills, buildings and towers, crystals and rocks 等 |
+| <font color="red">pastel colors</font> | dark muted tones, warm sunset tones, cool night tones 等 |
+
+---
+
+### 8. 特效（补充）
+
+#### 8.1 Effect_Break（破碎特效）
+
+**英文提示词**：
+```
+abstract minimalist <font color="red">stone debris</font> particles, 
+<font color="red">4-6</font> pieces, geometric shapes, 
+32x32 pixel each, transparent background PNG, 
+breaking effect, game VFX, indie game asset, no background
+```
+
+**中文翻译**：
+抽象极简风格的 <font color="red">石头碎片</font> 粒子，<font color="red">4-6</font>块，几何形状，每块32x32像素，透明背景PNG，破碎效果，游戏特效，独立游戏素材，无背景。
+
+**可自定义内容**：
+| 原内容 | 可替换为 |
+|--------|----------|
+| <font color="red">stone debris</font> | crystal shards, ice pieces, wood splinters 等 |
+| <font color="red">4-6</font> pieces | 8-10 pieces, 12 pieces 等 |
+
+---
+
+#### 8.2 Effect_Dust（灰尘粒子）
+
+**英文提示词**：
+```
+abstract minimalist <font color="red">dust cloud</font> particles, 
+<font color="red">gray brown</font> color, soft edges, 
+16x16 pixel, transparent background PNG, 
+floating dust effect, game VFX, indie game asset, no background
+```
+
+**中文翻译**：
+抽象极简风格的 <font color="red">灰尘云</font> 粒子，<font color="red">灰褐色</font>，柔和边缘，16x16像素，透明背景PNG，漂浮灰尘效果，游戏特效，独立游戏素材，无背景。
+
+**可自定义内容**：
+| 原内容 | 可替换为 |
+|--------|----------|
+| <font color="red">dust cloud</font> | smoke puff, sand particles, magic sparkles 等 |
+| <font color="red">gray brown</font> | white, light blue, golden 等 |
+
+---
+
+#### 8.3 Effect_Sparkle（收集闪光）
+
+**英文提示词**：
+```
+abstract minimalist <font color="red">sparkle</font> particles, 
+<font color="red">golden yellow</font> color, geometric star shapes, 
+32x32 pixel, transparent background PNG, 
+magical collect effect, game VFX, indie game asset, no background
+```
+
+**中文翻译**：
+抽象极简风格的 <font color="red">闪光</font> 粒子，<font color="red">金黄色</font>，几何星形，32x32像素，透明背景PNG，魔法收集效果，游戏特效，独立游戏素材，无背景。
+
+**可自定义内容**：
+| 原内容 | 可替换为 |
+|--------|----------|
+| <font color="red">sparkle</font> | glitter, star burst, energy flash 等 |
+| <font color="red">golden yellow</font> | cyan, purple, white 等 |
+
+---
+
+#### 8.4 Effect_Unlock（解锁飞行光芒）
+
+**英文提示词**：
+```
+abstract minimalist <font color="red">unlock flight</font> effect, 
+<font color="red">bright blue</font> glowing rays, geometric burst pattern, 
+128x128 pixel, transparent background PNG, 
+magical transformation effect, game VFX, indie game asset, no background
+```
+
+**中文翻译**：
+抽象极简风格的 <font color="red">解锁飞行</font> 特效，<font color="red">亮蓝色</font>发光射线，几何爆发图案，128x128像素，透明背景PNG，魔法变身效果，游戏特效，独立游戏素材，无背景。
+
+**可自定义内容**：
+| 原内容 | 可替换为 |
+|--------|----------|
+| <font color="red">unlock flight</font> | power up, level up, ability unlock 等 |
+| <font color="red">bright blue</font> | golden, purple, white 等 |
+
+---
+
+## 快速参考表
+
+### 素材生成优先级顺序
+
+| 顺序 | 素材名称 | 英文提示词关键词 | 尺寸 |
+|------|----------|------------------|------|
+| 1 | 主角概念图 | abstract minimalist bird creature concept | 512x512 |
+| 2 | Player_Idle | abstract minimalist bird creature idle | 128x128 |
+| 3 | Player_Jump | abstract minimalist bird creature jumping | 128x128 |
+| 4 | Player_Fly | abstract minimalist bird creature flying | 128x128 |
+| 5 | Wing_Immature | abstract minimalist small translucent wings | 64x64 |
+| 6 | Wing_Mature | abstract minimalist majestic wings | 128x128 |
+| 7 | Ground_Tile | Disco Elysium style grass dirt platform | 256x64 |
+| 8 | BouncePlatform | Disco Elysium style lily pad | 128x32 |
+| 9 | FlyItem_Small | abstract minimalist glowing energy orb | 64x64 |
+| 10 | FlyItem_Large | abstract minimalist large glowing crystal | 96x96 |
+| 11 | Logo_Title | Disco Elysium style title logo | 512x128 |
+| 12 | Heart_Full/Empty | abstract minimalist heart icon | 64x64 |
+
+---
+
+### 色板速查
+
+```
+[角色主色]
+橙白奶油色: #FF8C00 (橙) #FFD700 (金) #FFFFFF (白)
+
+[翅膀色]
+未成熟: #80B4FF (浅蓝, 60%透明)
+成熟: #4D99FF (亮蓝, 100%不透明)
+
+[收集物色]
+小型: #FFD700 (金色)
+大型: #00CED1 (青色)
+
+[UI色]
+按钮: 蓝色渐变
+生命值: #FF0000 (红)
+终点: #FFD700 (金)
+检查点激活: #00FF00 (绿)
+
+[环境色]
+地面: 棕色+绿色
+洞穴: 蓝灰色
+天空: 浅蓝→紫色渐变
+```
+
+---
+
+## 使用提示
+
+1. **先生成主角概念图**：确定角色造型后再生成动画帧，保持一致性
+2. **分批生成**：按优先级表格顺序，每批3-5个素材
+3. **风格一致性**：每次生成都包含 `abstract minimalist` 或 `Disco Elysium style` 关键词
+4. **后处理**：生成后检查边缘是否干净，必要时用 Photoshop/Photopea 去除杂边
+5. **尺寸调整**：AI生成尺寸可能不是精确值，需手动裁剪到目标尺寸

@@ -29,7 +29,9 @@ public class PlayerController : MonoBehaviour
     
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
+    private PlayerJump playerJump;
     private float horizontalInput;
+    private float verticalInput;
     private bool isGrounded;
     private bool canControl = true;
     
@@ -39,6 +41,7 @@ public class PlayerController : MonoBehaviour
     
     public bool IsGrounded => isGrounded;
     public float HorizontalInput => horizontalInput;
+    public float VerticalInput => verticalInput;
     public Rigidbody2D Rb => rb;
     public bool CanControl => canControl;
     
@@ -50,6 +53,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        playerJump = GetComponent<PlayerJump>();
         
         if (rb == null)
         {
@@ -67,6 +71,7 @@ public class PlayerController : MonoBehaviour
         if (!canControl) return;
         
         horizontalInput = Input.GetAxis("Horizontal");
+        verticalInput = Input.GetAxis("Vertical");
         HandleFlip();
     }
     
@@ -111,6 +116,8 @@ public class PlayerController : MonoBehaviour
     
     private void HandleMovement()
     {
+        if (playerJump != null && playerJump.IsDashing) return;
+        
         float targetVelocityX = horizontalInput * moveSpeed;
         rb.velocity = new Vector2(targetVelocityX, rb.velocity.y);
     }

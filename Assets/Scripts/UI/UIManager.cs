@@ -1,4 +1,7 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+using System.Collections;
 
 /// <summary>
 /// UI 管理器
@@ -39,6 +42,9 @@ public class UIManager : MonoBehaviour
 
     [Tooltip("游戏结束界面")]
     [SerializeField] private GameObject gameOverPanel;
+
+    [Tooltip("提示面板")]
+    [SerializeField] private GameObject tipPanel;
 
     [Header("游戏状态")]
     [Tooltip("游戏开始时是否自动显示游戏 UI")]
@@ -268,6 +274,37 @@ public class UIManager : MonoBehaviour
 
         HideAllPanels();
         ShowStartPanel();
+    }
+
+    /// <summary>
+    /// 显示提示
+    /// </summary>
+    /// <param name="message">提示内容</param>
+    /// <param name="duration">显示时间</param>
+    public void ShowTip(string message, float duration = 3f)
+    {
+        StartCoroutine(ShowTipCoroutine(message, duration));
+    }
+
+    private System.Collections.IEnumerator ShowTipCoroutine(string message, float duration)
+    {
+        if (tipPanel == null)
+        {
+            Debug.LogWarning("UIManager: Tip Panel 未设置！");
+            yield break;
+        }
+
+        TextMeshProUGUI tipText = tipPanel.GetComponentInChildren<TextMeshProUGUI>();
+        if (tipText != null)
+        {
+            tipText.text = message;
+        }
+
+        tipPanel.SetActive(true);
+
+        yield return new WaitForSeconds(duration);
+
+        tipPanel.SetActive(false);
     }
 
     #endregion
